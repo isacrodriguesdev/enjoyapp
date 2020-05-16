@@ -7,8 +7,6 @@ import { FlatList } from 'react-native-gesture-handler';
 import { font } from '~/app';
 import { screenPrimaryColor } from '~/app/colors';
 // services
-import { } from '~/services/realm';
-import { getUserId } from '~/services/account';
 // types
 import { NavigationProp } from '@react-navigation/native';
 // actions
@@ -16,9 +14,6 @@ import { getMessages, unmontMessages } from '~/store/duck/chat';
 // components
 import Header from './Header';
 import Input from './Input';
-import Received from './Received';
-import Sent from './Sent';
-import { MessageResponse } from '~/types';
 
 type Props = {
    navigation: NavigationProp<any>,
