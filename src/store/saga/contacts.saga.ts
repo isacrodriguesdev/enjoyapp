@@ -3,11 +3,13 @@ import { put } from 'redux-saga/effects';
 
 export function* asyncGetUsersFavorites() {
   try {
-    const response: AxiosResponse = yield axios.get("/favorites");
+    const response: AxiosResponse = yield axios.get("/contacts");
+
+    console.log(response.data.favorites)
 
     yield put({
       type: "users/GETED_USERS_FAVORITES",
-      payload: response.data
+      payload: response.data.favorites
     });
   } catch (error) {
 

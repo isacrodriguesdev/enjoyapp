@@ -45,7 +45,7 @@ export default function AuthProvider({ children }: any) {
       setLoading(true);
 
       // API Request
-      const response = await axios.post("/signin", {
+      const response = await axios.post("/login", {
          email: email
       })
 

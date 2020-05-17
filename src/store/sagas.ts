@@ -8,7 +8,7 @@ import * as chat from './saga/chat.saga';
 export default function* root() {
   yield all([
     // home
-    takeLatest("profile/ASYNC_REQUEST_GETED_USERS", home.asyncGetHomeUsers),
+    takeLatest("home/ASYNC_REQUEST_GETED_USERS", home.asyncGetHomeUsers),
     // profile
     takeLatest("profile/ASYNC_REQUEST_GETED_PROFILE", profile.asyncGetProfile),
     takeLatest("profile/ASYNC_ADDED_USER_FAVORITES", profile.asyncAddUserFavorites),

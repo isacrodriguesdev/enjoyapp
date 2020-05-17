@@ -7,18 +7,23 @@ import { screenPrimaryColor } from '~/app/colors';
 // types
 import { NavigationProp } from '@react-navigation/native';
 // components
-// actions
-import { getUsersFavorites } from '~/store/duck/contacts';
 import Header from './Header';
 import Item from './Item';
+// actions
+import { getUsersFavorites } from '~/store/duck/contacts';
 
-type Props = {
-   navigation: NavigationProp<any>,
-   contacts: object[],
-   favorites: object[],
-   matchs: object[],
-   getUsersFavorites: () => void
-};
+interface StateProps {
+   navigation: NavigationProp<any>;
+   contacts: object[];
+   favorites: object[];
+   matchs: object[];
+ }
+ 
+ interface DispatchProps {
+   getUsersFavorites(): void;
+ }
+ 
+ type Props = StateProps & DispatchProps;
 
 class Contacts extends Component<Props> {
 
@@ -63,9 +68,9 @@ class Contacts extends Component<Props> {
 
 const mapStateToProps = (state: any) => {
    return {
-      contacts: state.users.contacts,
-      favorites: state.users.favorites,
-      matchs: state.users.matchs,
+      contacts: state.contacts.contacts,
+      favorites: state.contacts.favorites,
+      matchs: state.contacts.matchs,
    }
 }
 

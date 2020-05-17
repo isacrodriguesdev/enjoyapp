@@ -2,7 +2,7 @@
 type ActionReducer = { type: string, payload: any };
 
 const initialState = {
-  profile: {},
+  users: [],
   error: null,
   loading: false
 };
@@ -20,7 +20,7 @@ export default function reducer(state = initialState, action: ActionReducer) {
     case "home/SUCCESS_GETED_USERS":
       return {
         ...state,
-        profile: action.payload,
+        users: action.payload,
         loading: false,
         error: false
       };
