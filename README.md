@@ -1,2 +1,2 @@
 <h1>Enjoy</h1>
-<img src="https://circleci.com/gh/facebook/react-native.svg?style=shield" alt="Current CircleCI build status." />
+<img src="https://images5.alphacoders.com/423/thumb-1920-423148.jpg" />
