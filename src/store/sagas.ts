@@ -10,7 +10,9 @@ export default function* root() {
     // home
     takeLatest("home/ASYNC_REQUEST_GETED_USERS", home.asyncGetHomeUsers),
     // profile
-    takeLatest("profile/ASYNC_REQUEST_GETED_PROFILE", profile.asyncGetProfile),
+
+    takeLatest("profile/REQUEST_GETED_PROFILE", profile.asyncGetProfile),
+
     takeLatest("profile/ASYNC_ADDED_USER_FAVORITES", profile.asyncAddUserFavorites),
     takeLatest("profile/ASYNC_REMOVED_USER_FAVORITES", profile.asyncRemoveUserFavorites),
     takeLatest("profile/ASYNC_REMOVED_USER_HEART", profile.asyncRemoveUserHeart), 
@@ -18,6 +20,6 @@ export default function* root() {
     takeLatest("contacts/ASYNC_GETED_USERS_FAVORITES", contacts.asyncGetUsersFavorites),
     takeLatest("contacts/ASYNC_GETED_USERS_MATCHS", contacts.asyncGetUsersMatchs),
     // chat
-    takeLatest("chat/ASYNC_REQUEST_GETED_MESSAGES", chat.asyncGetMessages),
+    takeLatest("chat/REQUEST_GETED_MESSAGES", chat.asyncGetMessages),
   ]);
 };

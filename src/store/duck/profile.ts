@@ -31,13 +31,6 @@ export default function reducer(state = initialState, action: ActionReducer) {
         error: action.payload
       };
     // update
-    case "profile/REQUEST_UPDATED_PROFILE":
-      return {
-        ...state,
-        profile: {...state.profile, ...action.payload},
-        loading: true,
-        error: false
-      };
     default:
       return state;
   };
@@ -45,14 +38,7 @@ export default function reducer(state = initialState, action: ActionReducer) {
 
 export function getProfile(id: number) {
   return {
-    type: "profile/ASYNC_REQUEST_GETED_PROFILE",
-    payload: { id }
-  };
-};
-
-export function updateProfile(id: number) {
-  return {
-    type: "profile/ASYNC_UPDATED_PROFILE",
+    type: "profile/REQUEST_GETED_PROFILE",
     payload: { id }
   };
 };
@@ -84,3 +70,4 @@ export function removeUserHeart(userHeartId: number) { // REMOVE
     payload: { userHeartId }
   };
 };
+

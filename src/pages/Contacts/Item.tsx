@@ -34,7 +34,7 @@ class Contact extends Component<Props> {
       return (
          <TouchableOpacity style={styles.contactContainer}
             activeOpacity={0.5}
-            onPress={() => navigate("CHAT", { user: this.props.user })}>
+            onPress={() => navigate("CONVERSATIONS", { user: this.props.user })}>
             <View style={styles.rowAndCenter}>
 
                <View>

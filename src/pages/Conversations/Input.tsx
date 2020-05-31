@@ -6,6 +6,7 @@ import { font } from '~/app';
 import { SimpleLineIcons, FontAwesome } from '~/app/icon';
 import { secundaryColors } from '~/app/colors';
 import { getUserId, getUserToken } from '~/services/account';
+import Message from '~/messenger/Message';
 // types
 // actions
 import { } from '~/store/duck/chat';
@@ -43,23 +44,25 @@ class Input extends Component<Props> {
    // actions
    async handleSendMessage() {
 
-      const token = await getUserToken();
-
       // send message
+      // new Message({
+      //    user: {
+      //       id: this.props.user.id,
+      //       connectionId: this.props.user.conn
+      //    },
+      //    message: {
+      //       type: "text",
+      //       from: this.state.ownerId,
+      //       content: this.state.messageText,
+      //       sentAt: Date.now(),
+      //    }
+      // }).send()
+
       socket.emit("message", {
-         headers: {
-            authorization: token
-         },
-         user: {
-            id: this.props.user.id,
-            conn: this.props.user.conn
-         },
-         message: {
-            type: "text",
-            from: this.state.ownerId,
-            content: this.state.messageText,
-            sentAt: Date.now(),
-         }
+         type: "text",
+         from: this.state.ownerId,
+         content: this.state.messageText,
+         sentAt: Date.now(),
       })
 
       this.setState({ messageText: "" });

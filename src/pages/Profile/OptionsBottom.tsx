@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { View, StyleSheet, TouchableWithoutFeedback, TouchableOpacity, Image } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 // imports
@@ -12,20 +12,19 @@ import {addUserFavorites} from '~/store/duck/profile';
 // components
 import Mount from '~/components/Mount';
 
+interface ProfileProps {
+   userFavoritedId: number;
+   favorited: boolean;
+   heart: boolean;
+}
+
 interface StateProps {
    navigation: NavigationProp<any>;
-   user: {
-      userFavoritedId: number,
-      favorited: boolean,
-      heart: boolean
-   },
  }
  
- interface DispatchProps {
-   addUserFavorites(userFavoritedId: number): void;
- }
+interface DispatchProps {}
  
- type Props = StateProps & DispatchProps;
+type Props = StateProps & DispatchProps;
 
 export default (props: Props) => {
 
@@ -33,6 +32,7 @@ export default (props: Props) => {
 
    // redux
    const dispatch = useDispatch();
+   const profile: ProfileProps = useSelector((state: any) => state.profile.profile);
 
    // state
    const [heart, setHeart] = useState(false);
@@ -40,8 +40,8 @@ export default (props: Props) => {
 
    useEffect(() => {
 
-      setFavorited(props.user.favorited);
-      setHeart(props.user.heart);
+      setFavorited(profile.favorited);
+      setHeart(profile.heart);
 
    }, []);
 
@@ -54,7 +54,7 @@ export default (props: Props) => {
 
    function handleFavorite() {
 
-      dispatch(addUserFavorites(props.user.userFavoritedId))
+      dispatch(addUserFavorites(profile.userFavoritedId))
       // if (favorited) {
       // } else {
       // };

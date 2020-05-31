@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { put } from 'redux-saga/effects';
+import { put, select } from 'redux-saga/effects';
 
 export function* asyncGetProfile(action: any) {
   try {
@@ -18,27 +18,6 @@ export function* asyncGetProfile(action: any) {
   }
 }
 
-export function* asyncUpdateProfile(action: any) {
-  try {
-    const response: AxiosResponse = yield axios.put("/profile", {
-      userId: action.payload.id
-    });
-
-    yield put({
-      type: "profile/UPDATED_PROFILE",
-      payload: response.data
-    });
-
-    yield put({
-      type: "contacts/UPDATED_USERS_CONTACTS",
-      payload: response.data
-    });
-
-  } catch (error) {
-
-  }
-}
-
 // bottom
 
 export function* asyncAddUserFavorites({ payload }: any) {
@@ -48,6 +27,16 @@ export function* asyncAddUserFavorites({ payload }: any) {
 
     yield put({
       type: "profile/GETED_USERS_FAVORITES",
+    });
+
+    const state = yield select();
+
+    yield put({
+      type: "profile/SUCCESS_GETED_PROFILE",
+      payload: { 
+        ...state.profile.profile, 
+        favorited: !state.profile.profile.favorited, 
+      }
     });
 
   } catch (error) {

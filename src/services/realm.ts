@@ -23,17 +23,3 @@ const ChatSchema: ObjectSchema = {
 export default function getRealm() {
   return Realm.open({ schema: [ChatSchema, MessageSchema] });
 }
-
-export async function getMessagesRealmDB() {
-
-  const messages: object[] = [];
-
-  const realm = await getRealm();
-  const data = realm.objects("Chat");
-
-  data.forEach(message => {
-     messages.push(message);
-  });
-
-  return messages;
-}

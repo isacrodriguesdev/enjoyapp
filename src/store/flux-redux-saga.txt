@@ -1,0 +1,6 @@
+
+Action redux emite -> REQUEST_TODO_LIST
+
+Saga root ouve -> REQUEST_TODO_LIST
+
+Saga root chama action do saga -> getTodoList -> SUCCESS_TODO_LIST

@@ -27,6 +27,7 @@ import OptionsBottom from "./OptionsBottom";
 // actions
 import { getProfile } from "~/store/duck/profile";
 import { secundaryColor } from "~/app/colors";
+import Loading from "~/components/Loading";
 
 interface StateProps {
   navigation: NavigationProp<any>;
@@ -64,17 +65,13 @@ class Profile extends Component<Props> {
     const { userId }: any = this.props.route.params;
     this.props.getProfile(userId);
   }
-
+  
   render() {
     const user = this.props.profile;
     const { navigation } = this.props;
 
     if (this.props.loading) {
-      return (
-        <View style={styles.loading}>
-          <ActivityIndicator size="large" color={secundaryColor} />
-        </View>
-      );
+      return <Loading />
     }
 
     return (
@@ -124,8 +121,7 @@ class Profile extends Component<Props> {
                   this.setState({
                     albumContainerWidth: nativeEvent.layout.width,
                   });
-                }}
-              >
+                }}>
                 <FlatList
                   horizontal={true}
                   contentContainerStyle={{
@@ -135,14 +131,12 @@ class Profile extends Component<Props> {
                   keyExtractor={(_, index) => index.toString()}
                   renderItem={({ item }) => (
                     <TouchableWithoutFeedback
-                      onPress={() => console.log("OPEN_IMAGE")}
-                    >
+                      onPress={() => console.log("OPEN_IMAGE")}>
                       <View
                         style={[
                           styles.photoAlbumItem,
                           styles.photosAlbumItemContainer,
-                        ]}
-                      >
+                        ]}>
                         <Image
                           source={{ uri: item }}
                           style={[styles.photoAlbumItem, this.applySizeImage()]}
@@ -178,14 +172,7 @@ class Profile extends Component<Props> {
           <View style={{ height: width / 3.3 }} />
         </ScrollView>
 
-        <OptionsBottom
-          navigation={navigation}
-          user={{
-            favorited: user.favorited,
-            heart: user.heart,
-            userFavoritedId: user.id,
-          }}
-        />
+        <OptionsBottom navigation={navigation} />
       </View>
     );
   }
@@ -252,11 +239,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-  },
-  loading: {
-    flex: 1,
-    justifyContent: "center",
-    alignContent: "center",
   },
   //
 });
