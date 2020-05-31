@@ -57,10 +57,10 @@ export function updateProfile(id: number) {
   };
 };
 
-export function addUserFavorites(userFavoritedId: number) { // ADD
+export function addUserFavorites(userId: number) { // ADD
   return {
     type: "profile/ASYNC_ADDED_USER_FAVORITES",
-    payload: { userFavoritedId }
+    payload: { userId }
   };
 };
 

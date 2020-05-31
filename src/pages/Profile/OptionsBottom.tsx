@@ -8,23 +8,24 @@ import { primaryColors, secundaryColors } from '~/app/colors';
 // types
 import { NavigationProp } from '@react-navigation/native';
 // actions
-import {
-   addUserFavorites,
-   removeUserFavorites,
-   addUserHeart,
-   removeUserHeart
-} from '~/store/duck/contacts';
+import {addUserFavorites} from '~/store/duck/profile';
 // components
 import Mount from '~/components/Mount';
 
-type Props = {
-   navigation: NavigationProp<any>,
+interface StateProps {
+   navigation: NavigationProp<any>;
    user: {
       userFavoritedId: number,
       favorited: boolean,
       heart: boolean
-   }
-};
+   },
+ }
+ 
+ interface DispatchProps {
+   addUserFavorites(userFavoritedId: number): void;
+ }
+ 
+ type Props = StateProps & DispatchProps;
 
 export default (props: Props) => {
 
@@ -47,19 +48,16 @@ export default (props: Props) => {
    function handleHeart() {
 
       if (heart) {
-         dispatch(removeUserHeart(props.user.userFavoritedId));
       } else {
-         dispatch(addUserHeart(props.user.userFavoritedId));
       };
    };
 
    function handleFavorite() {
 
-      if (favorited) {
-         dispatch(removeUserFavorites(props.user.userFavoritedId));
-      } else {
-         dispatch(addUserFavorites(props.user.userFavoritedId));
-      };
+      dispatch(addUserFavorites(props.user.userFavoritedId))
+      // if (favorited) {
+      // } else {
+      // };
    };
 
    return (

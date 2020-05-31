@@ -49,7 +49,7 @@ class Home extends Component<Props> {
               <Card
                 user={item}
                 onPress={() => {
-                  this.props.navigation.navigate(screen.PROFILE);
+                  this.props.navigation.navigate(screen.PROFILE, { userId: item.id });
                 }}
                 key={index}
               />

@@ -44,14 +44,14 @@ export function* asyncUpdateProfile(action: any) {
 export function* asyncAddUserFavorites({ payload }: any) {
   try {
 
-    yield axios.post("/favorites", { userFavoritedId: payload.userFavoritedId });
+    yield axios.post("/favorites", { userId: payload.userId });
 
     yield put({
       type: "profile/GETED_USERS_FAVORITES",
     });
 
   } catch (error) {
-
+    console.log(error)
   }
 }
 

@@ -3,13 +3,13 @@ import { put } from 'redux-saga/effects';
 
 export function* asyncGetUsersFavorites() {
   try {
-    const response: AxiosResponse = yield axios.get("/contacts");
+    const response: AxiosResponse = yield axios.get("/favorites");
 
-    console.log(response.data.favorites)
+    // console.log(response.data)
 
     yield put({
-      type: "users/GETED_USERS_FAVORITES",
-      payload: response.data.favorites
+      type: "contacts/GETED_USERS_FAVORITES",
+      payload: response.data
     });
   } catch (error) {
 
@@ -21,7 +21,7 @@ export function* asyncGetUsersMatchs() {
     const response: AxiosResponse = yield axios.get("/matchs");
 
     yield put({
-      type: "users/GETED_USERS_MATCHS",
+      type: "contacts/GETED_USERS_MATCHS",
       payload: response.data
     });
   } catch (error) {

@@ -14,6 +14,8 @@ import { getMessages, unmontMessages } from '~/store/duck/chat';
 // components
 import Header from './Header';
 import Input from './Input';
+import Sent from './Sent';
+import Received from './Received';
 
 type Props = {
    navigation: NavigationProp<any>,
@@ -29,11 +31,14 @@ class Chat extends Component<Props> {
 
    state = {
       heightScroll: 0,
-      positionScroll: 0, // off
+      positionScroll: 0, // ainda nã utilizado
    };
 
+   // faz com que a tela desça até o final ao abrir o teclado
    onKeyboardListener() {
+      // keyboardDidShow executar ação depois de abrir o teclado
       this.keyboardListener = Keyboard.addListener("keyboardDidShow", () => {
+         // ação que será feita
          this.refs.chat.scrollToOffset({
             offset: this.state.heightScroll,
             animated: false
@@ -42,14 +47,15 @@ class Chat extends Component<Props> {
    }
 
    componentDidMount() {
-
       this.onKeyboardListener();
    }
 
    componentWillUnmount() {
 
       Keyboard.dismiss();
-      this.props.unmontMessages(); // limpar o chat no redux
+      // resetar o array de conversas no store toda vez que sair da tela do chat
+      this.props.unmontMessages();
+      // remover todos os listeners do teclado
       this.keyboardListener.remove();
    }
 
@@ -57,6 +63,7 @@ class Chat extends Component<Props> {
 
    render() {
 
+      // dados do usuario que esta ativo no chat
       const user = this.props.route.params.user;
 
       return (
@@ -74,7 +81,7 @@ class Chat extends Component<Props> {
                data={this.props.messages}
                keyExtractor={(_, index) => index.toString()}
                renderItem={({ item }: any) => (
-                  <Text>{item.content}</Text>
+                  item.id == 0 ? <Sent data={item} /> : <Received data={item} />
                )}
             />
 
@@ -87,7 +94,24 @@ class Chat extends Component<Props> {
 
 const mapStateToProps = (state: any) => {
    return {
-      messages: state.chat.messages,
+      messages: [
+         {
+            id: 0,
+            content: "Oii, tudo bem?"
+         },
+         {
+            id: 1,
+            content: "Oie, aqui é bem divertido hehe"
+         },
+         {
+            id: 0,
+            content: "Vdd isso vai crescer um dia :)"
+         },
+         {
+            id: 0,
+            content: "Vou usar um pacote de mensagens vai fica mais elegante"
+         }
+      ],
    }
 }
 

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/isac/Área de Trabalho/enjoy-2.0/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-uk/values-uk.xml",
+            "outputFile": "/home/isac/Área de Trabalho/enjoy/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-uk/values-uk.xml",
             "map": [
                 {
                     "source": "/home/isac/.gradle/caches/transforms-2/files-2.1/4f509a65121478d6153615d7ef5b7c5f/core-1.1.0/res/values-uk/values-uk.xml",

@@ -36,14 +36,16 @@ class Contacts extends Component<Props> {
    }
 
    componentDidMount() {
-
+      
       switch (this.state.option) {
          case "favorites":
             this.props.getUsersFavorites();
             break;
-         default: 
+            default: 
             return;
-      }
+         }
+         
+      console.log(this.props.favorites)
    }
 
    render() {

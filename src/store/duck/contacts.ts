@@ -15,6 +15,7 @@ export default function reducer(state = initialState, action: ActionReducer) {
 
   switch (type) {
     case "contacts/GETED_USERS_FAVORITES":
+      console.log("contacts/GETED_USERS_FAVORITES", payload)
       return {
         ...state,
         favorites: payload
