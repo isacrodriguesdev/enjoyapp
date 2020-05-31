@@ -4,7 +4,7 @@ import { screen } from '~/app';
 import AppTabRoutes from './AppTabRoutes';
 
 import Profile from '~/pages/Profile/Index';
-import Chat from '~/pages/Chat/Index';
+import Conversations from '~/pages/Conversations/Index';
 import Notifications from '~/pages/Notifications/Index';
 
 const AppStack = createStackNavigator();
@@ -17,7 +17,7 @@ const AppStackRoutes = () => (
       gestureEnabled: false,
    }} initialRouteName={screen.HOME}>
       <AppStack.Screen name="HOME" component={AppTabRoutes} />
-      <AppStack.Screen name="CHAT" component={Chat} />
+      <AppStack.Screen name="CONVERSATIONS" component={Conversations} />
       <AppStack.Screen name="PROFILE" component={Profile} />
       <AppStack.Screen name="NOTIFICATIONS" component={Notifications} />
    </AppStack.Navigator>
